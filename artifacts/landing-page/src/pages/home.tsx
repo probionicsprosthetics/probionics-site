@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,13 +12,13 @@ const photo2 = "/assets/image_1776533493544.png";
 const aliPhoto = "/assets/ali.png";
 const amjadPhoto = "/assets/amjad.png";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
-  visible: (delay = 0) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1], delay },
-  }),
+    transition: { duration: 0.75, ease: "easeOut" },
+  },
 };
 
 export default function Home() {
@@ -233,7 +233,6 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                custom={i * 0.1}
                 variants={fadeUp}
                 className="flex flex-col"
                 data-testid={`solution-step-${i + 1}`}
@@ -289,7 +288,6 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                custom={i * 0.1}
                 variants={fadeUp}
                 className="border border-border p-8"
                 data-testid={`team-card-${i}`}
@@ -355,7 +353,6 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                custom={i * 0.1}
                 variants={fadeUp}
                 className="border border-border bg-background p-8 flex flex-col"
                 data-testid={`news-card-${i}`}
@@ -400,7 +397,6 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            custom={0.1}
             variants={fadeUp}
           >
             <form onSubmit={handleFormSubmit} className="space-y-6" data-testid="contact-form">
