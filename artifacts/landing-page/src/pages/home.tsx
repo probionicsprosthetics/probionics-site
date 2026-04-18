@@ -6,8 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-const photo1 = "/photo1.png";
-const photo2 = "/photo2.png";
+const photo1 = "/assets/image_1776533419876.png";
+const photo2 = "/assets/image_1776533493544.png";
 
 export default function Home() {
   const { toast } = useToast();
