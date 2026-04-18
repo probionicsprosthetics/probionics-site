@@ -7,6 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+import bostonPhoto from "@assets/IMG_2495_1776543542646.jpeg";
+import printerPhoto from "@assets/IMG_2457_1776543542646.jpeg";
+import socketTestVideo from "@assets/IMG_2480_1776543542646.mov";
+
 const heroPhoto = "/assets/image_1776533493544.png";
 const problemPhoto = "/assets/image_1776533419876.png";
 const aliPhoto = "/assets/ali.png";
@@ -310,7 +314,7 @@ export default function Home() {
                 role: "CEO",
                 photo: aliPhoto,
                 text: "@amjad @ibrahim — I'm in Boston. Revopoint invited us to their Rapid3D conference. Brought Ibrahim's socket. The team here has been incredible. Thank you Revopoint for having us.",
-                mediaLabel: "Photo · Rapid3D Event, Boston MA",
+                media: { type: "image" as const, src: bostonPhoto, alt: "Ali at the Rapid3D conference in Boston" },
               },
               {
                 hashtag: "#StressTest",
@@ -318,23 +322,7 @@ export default function Home() {
                 role: "CEO",
                 photo: aliPhoto,
                 text: "It's strong enough, gentlemen :)",
-                mediaLabel: "Photo + video · Socket on Bambu Lab P2S",
-              },
-              {
-                hashtag: "#DemoReady",
-                author: "Amjad Hassoun",
-                role: "COO",
-                photo: amjadPhoto,
-                text: "@ali demo is ready. It's on the repo — just pull and follow the instructions in #commands-channel.",
-                mediaLabel: null,
-              },
-              {
-                hashtag: "#FirstSocket",
-                author: "Ibrahim Atmeh",
-                role: "CTO",
-                photo: ibrahimPhoto,
-                text: "First socket. Found a transtibial limb scan from an open-source dataset, designed the socket in Fusion 360, printed the lower half in TPU on the Bambu Lab P2S. ~230g. Still need to figure out organic cuts and pressure relief around the knee. But it fits the scan.",
-                mediaLabel: "3D model · Limb scan + socket",
+                media: { type: "video" as const, src: socketTestVideo, poster: printerPhoto, alt: "Socket stress test on the Bambu Lab P2S" },
               },
             ].map((post, i) => (
               <motion.div
@@ -346,7 +334,7 @@ export default function Home() {
                 className="border border-border bg-background flex flex-col"
                 data-testid={`news-card-${i}`}
               >
-                <div className="p-6 md:p-8 flex flex-col flex-1">
+                <div className="p-6 md:p-8 flex flex-col">
                   <span className="self-start text-xs font-bold tracking-widest text-primary uppercase mb-4" data-testid={`news-hashtag-${i}`}>
                     {post.hashtag}
                   </span>
@@ -359,15 +347,28 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground">{post.role}</p>
                     </div>
                   </div>
-                  <p className="text-sm text-foreground leading-relaxed whitespace-pre-line flex-1">{post.text}</p>
+                  <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{post.text}</p>
                 </div>
-                {post.mediaLabel && (
-                  <div className="border-t border-border bg-muted/40 aspect-video flex items-center justify-center">
-                    <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase px-4 text-center">
-                      {post.mediaLabel}
-                    </p>
-                  </div>
-                )}
+                <div className="border-t border-border bg-muted/40 aspect-video overflow-hidden">
+                  {post.media.type === "image" ? (
+                    <img
+                      src={post.media.src}
+                      alt={post.media.alt}
+                      className="w-full h-full object-cover"
+                      data-testid={`news-media-${i}`}
+                    />
+                  ) : (
+                    <video
+                      src={post.media.src}
+                      poster={post.media.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover bg-black"
+                      data-testid={`news-media-${i}`}
+                    />
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
