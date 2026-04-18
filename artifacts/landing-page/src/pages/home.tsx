@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 const heroPhoto = "/assets/image_1776533493544.png";
+const problemPhoto = "/assets/image_1776533419876.png";
 const aliPhoto = "/assets/ali.png";
 const amjadPhoto = "/assets/amjad.png";
 const ibrahimPhoto = "/assets/ibrahim.png";
@@ -137,10 +138,10 @@ export default function Home() {
           >
             <SectionLabel>The Problem</SectionLabel>
             <h2 className="text-4xl md:text-6xl font-display font-bold leading-none tracking-tighter text-foreground" data-testid="problem-title">
-              THE SYSTEM IS<br />BROKEN.
+              THE SOCKET IS<br />THE BOTTLENECK.
             </h2>
             <p className="mt-8 text-xl md:text-2xl leading-relaxed text-muted-foreground font-medium" data-testid="problem-copy">
-              Prosthetics are expensive, slow to deliver, impossible to customize at scale, and virtually inaccessible in conflict zones.
+              Every prosthetic limb starts with a custom socket: the part that connects the device to the body. Sockets are expensive, slow to fabricate, impossible to customize at scale, and virtually inaccessible in conflict zones.
             </p>
 
             <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
@@ -150,7 +151,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-4xl md:text-5xl font-display font-bold text-primary" data-testid="stat-cost">$15k+</div>
-                <div className="mt-2 text-xs text-muted-foreground uppercase tracking-widest font-bold">Average device cost</div>
+                <div className="mt-2 text-xs text-muted-foreground uppercase tracking-widest font-bold">Average socket cost</div>
               </div>
               <div>
                 <div className="text-4xl md:text-5xl font-display font-bold text-primary" data-testid="stat-wait">6+</div>
@@ -159,8 +160,14 @@ export default function Home() {
             </div>
 
             <div className="mt-8 pl-6 border-l-2 border-primary">
+              <p className="text-base text-foreground leading-relaxed font-medium" data-testid="gaza-stat">
+                Recent studies show <span className="text-primary font-bold">Gaza now has the highest number of amputees per capita in the world</span>, with thousands of new cases since the start of the conflict and a near-total collapse of local prosthetic care.
+              </p>
+            </div>
+
+            <div className="mt-8 pl-6 border-l-2 border-border">
               <p className="text-base text-muted-foreground leading-relaxed italic">
-                "In Gaza, Syria, Sudan: the people who need prosthetics the most are in the places where it's hardest, slowest, and most expensive to deliver them. That's the gap we're closing."
+                "In Gaza, Syria, Sudan: the people who need a socket the most are in the places where it's hardest, slowest, and most expensive to deliver one. That's the gap we're closing."
               </p>
             </div>
           </motion.div>
@@ -172,7 +179,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="relative aspect-square md:aspect-[4/5] bg-muted w-full"
           >
-            <img src={heroPhoto} alt="Man navigating a conflict zone on crutches" className="w-full h-full object-cover grayscale contrast-125" data-testid="problem-image" />
+            <img src={problemPhoto} alt="Young person living with limb loss" className="w-full h-full object-cover grayscale contrast-125" data-testid="problem-image" />
             <div className="absolute inset-0 border border-border/50" />
           </motion.div>
         </div>
@@ -193,7 +200,7 @@ export default function Home() {
               BUILT FOR THE<br />FRONT LINES.
             </h3>
             <p className="mt-6 text-lg text-background/70 max-w-xl">
-              We've rebuilt the prosthetics pipeline from scratch, designed for conditions in the real world, not the ideal world.
+              We've rebuilt the socket fabrication pipeline from scratch, designed for conditions in the real world, not the ideal world.
             </p>
           </motion.div>
 
@@ -251,33 +258,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {
-                name: "Ali Kotb",
-                flag: "🇵🇸",
-                role: "CEO",
-                photo: aliPhoto,
-                bio: "Palestinian. Engineering student at Concordia University in Montreal. President of the Biomedical Engineering Club. Currently working at Motorola Solutions. Leads hardware, CAD, and prototyping.",
-                tags: ["Concordia Engineering", "Motorola Solutions", "Biomed Club President", "CAD & 3D Printing", "Montreal, QC"],
-                linkedin: "https://www.linkedin.com/in/ali-kotb/",
-              },
-              {
-                name: "Amjad Hassoun",
-                flag: "🇱🇧",
-                role: "COO",
-                photo: amjadPhoto,
-                bio: "Lebanese. Graduate Computer Science student at the University of Toronto. IT administrator and tech lead at a private bilingual school in Ontario. Leads business, grants, partnerships, and project management.",
-                tags: ["University of Toronto", "Graduate CS", "IT Admin", "iOS & Python", "Grant Strategy", "Ontario"],
-                linkedin: "https://www.linkedin.com/in/amjadhassoun/",
-              },
-              {
-                name: "Ibrahim",
-                flag: "",
-                role: "CTO",
-                photo: ibrahimPhoto,
-                bio: "Leads all technical architecture, software development, and engineering infrastructure at Pro Bionics. Responsible for the scanning pipeline, parametric design engine, and deployment systems.",
-                tags: ["Software Engineering", "Systems Architecture", "Embedded Tech"],
-                linkedin: "",
-              },
+              { name: "Ali Kotb", flag: "🇵🇸", role: "CEO", photo: aliPhoto, linkedin: "https://www.linkedin.com/in/ali-kotb/" },
+              { name: "Amjad Hassoun", flag: "🇱🇧", role: "COO", photo: amjadPhoto, linkedin: "https://www.linkedin.com/in/amjadhassoun/" },
+              { name: "Ibrahim", flag: "", role: "CTO", photo: ibrahimPhoto, linkedin: "" },
             ].map((member, i) => (
               <motion.div
                 key={i}
@@ -285,26 +268,16 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="border border-border p-8"
+                className="border border-border p-8 flex flex-col items-center text-center"
                 data-testid={`team-card-${i}`}
               >
-                <div className="flex items-center gap-5 mb-6">
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-muted flex-shrink-0">
-                    <img src={member.photo} alt={member.name} className="w-full h-full object-cover" data-testid={`team-photo-${i}`} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-display font-bold tracking-tight">
-                      {member.name}{member.flag && <span className="ml-2">{member.flag}</span>}
-                    </h3>
-                    <p className="text-sm font-semibold text-primary mt-1">{member.role}</p>
-                  </div>
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-muted mb-6">
+                  <img src={member.photo} alt={member.name} className="w-full h-full object-cover" data-testid={`team-photo-${i}`} />
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-5">{member.bio}</p>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {member.tags.map((tag, j) => (
-                    <span key={j} className="text-xs font-semibold border border-border px-3 py-1 text-muted-foreground">{tag}</span>
-                  ))}
-                </div>
+                <h3 className="text-xl font-display font-bold tracking-tight">
+                  {member.name}{member.flag && <span className="ml-2">{member.flag}</span>}
+                </h3>
+                <p className="text-sm font-semibold text-primary mt-1 mb-4">{member.role}</p>
                 {member.linkedin && (
                   <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary hover:underline" data-testid={`team-linkedin-${i}`}>
                     LinkedIn
