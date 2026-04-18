@@ -47,3 +47,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Local assets junk
+attached_assets/screenshots/
+attached_assets/*.zip
