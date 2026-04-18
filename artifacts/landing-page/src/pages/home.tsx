@@ -19,8 +19,20 @@ export default function Home() {
     message: ""
   });
 
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) errors.name = "Name is required.";
+    if (!formData.email.trim()) errors.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.email = "Please enter a valid email.";
+    if (!formData.intent) errors.intent = "Please select how you'd like to help.";
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    setFormErrors({});
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
@@ -271,30 +283,30 @@ export default function Home() {
                   <Label htmlFor="name" className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Full Name</Label>
                   <Input 
                     id="name" 
-                    required 
                     className="rounded-none border-border bg-muted/50 focus-visible:ring-primary h-12" 
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     data-testid="input-name"
                   />
+                  {formErrors.name && <p className="text-xs text-destructive mt-1" data-testid="error-name">{formErrors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Email Address</Label>
                   <Input 
                     id="email" 
-                    type="email" 
-                    required 
+                    type="email"
                     className="rounded-none border-border bg-muted/50 focus-visible:ring-primary h-12" 
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     data-testid="input-email"
                   />
+                  {formErrors.email && <p className="text-xs text-destructive mt-1" data-testid="error-email">{formErrors.email}</p>}
                 </div>
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="intent" className="text-xs uppercase tracking-widest font-bold text-muted-foreground">How would you like to help?</Label>
-                <Select value={formData.intent} onValueChange={(val) => setFormData({...formData, intent: val})} required>
+                <Select value={formData.intent} onValueChange={(val) => setFormData({...formData, intent: val})}>
                   <SelectTrigger id="intent" className="rounded-none border-border bg-muted/50 focus-visible:ring-primary h-12" data-testid="select-intent">
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
@@ -305,6 +317,7 @@ export default function Home() {
                     <SelectItem value="press">Press / Media Inquiry</SelectItem>
                   </SelectContent>
                 </Select>
+                {formErrors.intent && <p className="text-xs text-destructive mt-1" data-testid="error-intent">{formErrors.intent}</p>}
               </div>
 
               <div className="space-y-2">
