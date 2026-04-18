@@ -290,7 +290,7 @@ export default function Home() {
 
       {/* News & Updates */}
       <section id="news" className="py-24 md:py-40 px-6 md:px-12 bg-muted/50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -302,36 +302,72 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter text-foreground" data-testid="news-title">FIELD DISPATCHES</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                date: "MARCH 2026",
-                title: "First Containerized Print Unit Operational",
-                excerpt: "Our micro-factory prototype, built to fit inside a standard 20ft shipping container, successfully printed its first medical-grade socket. The unit requires only 220V power and an internet connection to operate.",
+                hashtag: "#Boston",
+                author: "Ali Kotb",
+                role: "CEO",
+                photo: aliPhoto,
+                text: "@amjad @ibrahim — I'm in Boston. Revopoint invited us to their Rapid3D conference. Brought Ibrahim's socket. The team here has been incredible. Thank you Revopoint for having us.",
+                mediaLabel: "Photo · Rapid3D Event, Boston MA",
               },
               {
-                date: "FEBRUARY 2026",
-                title: "NGO Partnership Discussions Underway",
-                excerpt: "We are in active discussions with organizations operating in Gaza and Sudan to pilot our scanning and printing pipeline. First deployments are being planned for Q3 2026.",
+                hashtag: "#StressTest",
+                author: "Ali Kotb",
+                role: "CEO",
+                photo: aliPhoto,
+                text: "It's strong enough, gentlemen :)",
+                mediaLabel: "Photo + video · Socket on Bambu Lab P2S",
               },
               {
-                date: "JANUARY 2026",
-                title: "Parametric Design Model Validated",
-                excerpt: "Our generative socket design model has passed initial clinical validation with a certified prosthetist in Montreal. The model can produce a fitting-ready socket design in under 4 minutes from scan data.",
+                hashtag: "#DemoReady",
+                author: "Amjad Hassoun",
+                role: "COO",
+                photo: amjadPhoto,
+                text: "@ali demo is ready. It's on the repo — just pull and follow the instructions in #commands-channel.",
+                mediaLabel: null,
               },
-            ].map((article, i) => (
+              {
+                hashtag: "#FirstSocket",
+                author: "Ibrahim Atmeh",
+                role: "CTO",
+                photo: ibrahimPhoto,
+                text: "First socket. Found a transtibial limb scan from an open-source dataset, designed the socket in Fusion 360, printed the lower half in TPU on the Bambu Lab P2S. ~230g. Still need to figure out organic cuts and pressure relief around the knee. But it fits the scan.",
+                mediaLabel: "3D model · Limb scan + socket",
+              },
+            ].map((post, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="border border-border bg-background p-8 flex flex-col"
+                className="border border-border bg-background flex flex-col"
                 data-testid={`news-card-${i}`}
               >
-                <p className="text-xs font-bold tracking-widest text-primary uppercase mb-4">{article.date}</p>
-                <h3 className="text-lg font-display font-bold tracking-tight text-foreground mb-3 leading-tight">{article.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed flex-1">{article.excerpt}</p>
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <span className="self-start text-xs font-bold tracking-widest text-primary uppercase mb-4" data-testid={`news-hashtag-${i}`}>
+                    {post.hashtag}
+                  </span>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0">
+                      <img src={post.photo} alt={post.author} className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-display font-bold tracking-tight text-foreground leading-tight">{post.author}</p>
+                      <p className="text-xs text-muted-foreground">{post.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-foreground leading-relaxed whitespace-pre-line flex-1">{post.text}</p>
+                </div>
+                {post.mediaLabel && (
+                  <div className="border-t border-border bg-muted/40 aspect-video flex items-center justify-center">
+                    <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase px-4 text-center">
+                      {post.mediaLabel}
+                    </p>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
