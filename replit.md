@@ -25,3 +25,17 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+### landing-page (`artifacts/landing-page/`)
+- **Preview path**: `/` (served at root)
+- **Type**: React + Vite, single-page landing page
+- **Purpose**: Prosthetics company landing page with hero, problem statement, 3D-printed socket solution, news/updates, contact form
+- **Photos**: Uses `attached_assets/image_1776533419876.png` and `attached_assets/image_1776533493544.png` via `@assets` alias
+- **Company name placeholder**: "AXIS" — update to real brand name when available
+- **No backend**: Form submissions stay in local React state
+
+### api-server (`artifacts/api-server/`)
+- Express 5 backend serving at `/api`
+- Currently minimal (just health check at `/api/healthz`)
