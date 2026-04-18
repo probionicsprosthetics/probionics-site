@@ -6,8 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import photo1 from "@assets/image_1776533419876.png";
-import photo2 from "@assets/image_1776533493544.png";
+const photo1 = "/photo1.png";
+const photo2 = "/photo2.png";
 
 export default function Home() {
   const { toast } = useToast();
@@ -49,15 +49,26 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative w-full min-h-[100dvh] flex flex-col justify-end pb-12 md:pb-24 px-6 md:px-12">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={photo2} 
-            alt="Man on crutches in rubble" 
-            className="w-full h-full object-cover filter grayscale-[20%] contrast-125"
-            data-testid="hero-image"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        {/* Split background: two photos side by side */}
+        <div className="absolute inset-0 z-0 flex">
+          <div className="flex-1 overflow-hidden">
+            <img 
+              src={photo2} 
+              alt="Man on crutches in rubble" 
+              className="w-full h-full object-cover filter grayscale-[20%] contrast-125"
+              data-testid="hero-image-1"
+            />
+          </div>
+          <div className="hidden md:block flex-1 overflow-hidden">
+            <img 
+              src={photo1} 
+              alt="Boy with prosthetic limb" 
+              className="w-full h-full object-cover filter grayscale-[30%] contrast-125 brightness-90"
+              data-testid="hero-image-2"
+            />
+          </div>
         </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/15 z-[1]" />
         
         <div className="relative z-10 max-w-5xl">
           <motion.h1 
