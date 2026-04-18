@@ -7,10 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-const photo1 = "/assets/image_1776533419876.png";
-const photo2 = "/assets/image_1776533493544.png";
+const heroPhoto = "/assets/image_1776533493544.png";
 const aliPhoto = "/assets/ali.png";
 const amjadPhoto = "/assets/amjad.png";
+const ibrahimPhoto = "/assets/ibrahim.png";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -20,6 +20,16 @@ const fadeUp: Variants = {
     transition: { duration: 0.75, ease: "easeOut" },
   },
 };
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="inline-block mb-6">
+      <span className="bg-primary text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5">
+        {children}
+      </span>
+    </div>
+  );
+}
 
 export default function Home() {
   const { toast } = useToast();
@@ -63,32 +73,16 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative w-full min-h-[100dvh] flex flex-col justify-end pb-12 md:pb-24 px-6 md:px-12">
-        <div className="absolute inset-0 z-0 flex">
-          <div className="flex-1 overflow-hidden">
-            <img src={photo2} alt="Man on crutches navigating rubble in a conflict zone" className="w-full h-full object-cover grayscale-[20%] contrast-125" data-testid="hero-image-1" />
-          </div>
-          <div className="hidden md:block flex-1 overflow-hidden">
-            <img src={photo1} alt="Young boy living with limb loss" className="w-full h-full object-cover grayscale-[30%] contrast-125 brightness-90" data-testid="hero-image-2" />
-          </div>
+        <div className="absolute inset-0 z-0">
+          <img src={heroPhoto} alt="Man on crutches navigating rubble in a conflict zone" className="w-full h-full object-cover grayscale-[20%] contrast-125" data-testid="hero-image" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/15 z-[1]" />
 
         <div className="relative z-10 max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-white/70 border border-white/20 rounded-full px-4 py-2"
-            data-testid="hero-badge"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Open project — follow our journey to deploy the first prosthetic to Gaza
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl md:text-7xl lg:text-9xl font-display font-bold text-white leading-[0.9] tracking-tighter"
             data-testid="hero-headline"
           >
@@ -98,17 +92,17 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 md:mt-10 text-xl md:text-2xl text-white/80 max-w-2xl font-medium"
             data-testid="hero-subheadline"
           >
-            Low-cost 3D-printed prosthetic sockets for conflict zones — designed, manufactured, and fitted in under 48 hours.
+            Low-cost 3D-printed prosthetic sockets for conflict zones, designed, manufactured, and fitted in under 48 hours.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
             className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-white/60 border border-white/15 rounded-lg px-5 py-3"
             data-testid="hero-pipeline"
           >
@@ -117,8 +111,6 @@ export default function Home() {
             <span className="text-white font-bold">Design</span>
             <span className="text-primary">→</span>
             <span className="text-white font-bold">Print</span>
-            <span className="text-primary">→</span>
-            <span className="text-white font-bold">Fit</span>
           </motion.div>
 
           <motion.div
@@ -143,12 +135,12 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
           >
-            <p className="text-xs font-bold tracking-widest text-primary uppercase mb-4">The Problem</p>
+            <SectionLabel>The Problem</SectionLabel>
             <h2 className="text-4xl md:text-6xl font-display font-bold leading-none tracking-tighter text-foreground" data-testid="problem-title">
               THE SYSTEM IS<br />BROKEN.
             </h2>
             <p className="mt-8 text-xl md:text-2xl leading-relaxed text-muted-foreground font-medium" data-testid="problem-copy">
-              <strong className="text-foreground">Prosthetics are broken where they're needed most.</strong> The global prosthetics market is structurally broken: devices are expensive, slow to deliver, impossible to customize at scale, and virtually inaccessible in conflict zones.
+              Prosthetics are expensive, slow to deliver, impossible to customize at scale, and virtually inaccessible in conflict zones.
             </p>
 
             <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
@@ -168,7 +160,7 @@ export default function Home() {
 
             <div className="mt-8 pl-6 border-l-2 border-primary">
               <p className="text-base text-muted-foreground leading-relaxed italic">
-                "In Gaza, Syria, Sudan — the people who need prosthetics the most are in the places where it's hardest, slowest, and most expensive to deliver them. That's the gap we're closing."
+                "In Gaza, Syria, Sudan: the people who need prosthetics the most are in the places where it's hardest, slowest, and most expensive to deliver them. That's the gap we're closing."
               </p>
             </div>
           </motion.div>
@@ -180,7 +172,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="relative aspect-square md:aspect-[4/5] bg-muted w-full"
           >
-            <img src={photo1} alt="Boy living with limb loss" className="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply" data-testid="problem-image" />
+            <img src={heroPhoto} alt="Man navigating a conflict zone on crutches" className="w-full h-full object-cover grayscale contrast-125" data-testid="problem-image" />
             <div className="absolute inset-0 border border-border/50" />
           </motion.div>
         </div>
@@ -196,16 +188,16 @@ export default function Home() {
             variants={fadeUp}
             className="max-w-3xl mb-20"
           >
-            <h2 className="text-sm font-bold tracking-widest text-primary uppercase mb-6">Our Solution</h2>
+            <SectionLabel>Our Solution</SectionLabel>
             <h3 className="text-4xl md:text-6xl font-display font-bold leading-none tracking-tighter" data-testid="solution-title">
               BUILT FOR THE<br />FRONT LINES.
             </h3>
             <p className="mt-6 text-lg text-background/70 max-w-xl">
-              We've rebuilt the prosthetics pipeline from scratch — designed for the conditions that exist in the real world, not the ideal world.
+              We've rebuilt the prosthetics pipeline from scratch, designed for conditions in the real world, not the ideal world.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-border/20 pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-border/20 pt-16">
             {[
               {
                 step: "01.",
@@ -215,17 +207,12 @@ export default function Home() {
               {
                 step: "02.",
                 label: "DESIGN",
-                desc: "A generative parametric model auto-generates a custom socket based on the scan data — accounting for volume, pressure points, and alignment.",
+                desc: "A generative parametric model auto-generates a custom socket based on the scan data, accounting for volume, pressure points, and alignment.",
               },
               {
                 step: "03.",
                 label: "PRINT",
                 desc: "The socket is printed on-site using medical-grade polymer. Our micro-factories fit in a shipping container. All you need is power and an internet connection.",
-              },
-              {
-                step: "04.",
-                label: "FIT",
-                desc: "A certified prosthetist performs the final fitting and adjustments. The patient walks out with a functional, custom prosthetic — in under 48 hours total.",
               },
             ].map((item, i) => (
               <motion.div
@@ -256,18 +243,18 @@ export default function Home() {
             variants={fadeUp}
             className="mb-16"
           >
-            <p className="text-xs font-bold tracking-widest text-primary uppercase mb-4">The Team</p>
+            <SectionLabel>The Team</SectionLabel>
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter text-foreground" data-testid="team-title">
               THREE FOUNDERS.<br />ONE MISSION.
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 name: "Ali Kotb",
                 flag: "🇵🇸",
-                role: "Product Owner — Engineering",
+                role: "CEO",
                 photo: aliPhoto,
                 bio: "Palestinian. Engineering student at Concordia University in Montreal. President of the Biomedical Engineering Club. Currently working at Motorola Solutions. Leads hardware, CAD, and prototyping.",
                 tags: ["Concordia Engineering", "Motorola Solutions", "Biomed Club President", "CAD & 3D Printing", "Montreal, QC"],
@@ -276,11 +263,20 @@ export default function Home() {
               {
                 name: "Amjad Hassoun",
                 flag: "🇱🇧",
-                role: "Business & Operations",
+                role: "COO",
                 photo: amjadPhoto,
                 bio: "Lebanese. Graduate Computer Science student at the University of Toronto. IT administrator and tech lead at a private bilingual school in Ontario. Leads business, grants, partnerships, and project management.",
                 tags: ["University of Toronto", "Graduate CS", "IT Admin", "iOS & Python", "Grant Strategy", "Ontario"],
                 linkedin: "https://www.linkedin.com/in/amjadhassoun/",
+              },
+              {
+                name: "Ibrahim",
+                flag: "",
+                role: "CTO",
+                photo: ibrahimPhoto,
+                bio: "Leads all technical architecture, software development, and engineering infrastructure at Pro Bionics. Responsible for the scanning pipeline, parametric design engine, and deployment systems.",
+                tags: ["Software Engineering", "Systems Architecture", "Embedded Tech"],
+                linkedin: "",
               },
             ].map((member, i) => (
               <motion.div
@@ -297,7 +293,9 @@ export default function Home() {
                     <img src={member.photo} alt={member.name} className="w-full h-full object-cover" data-testid={`team-photo-${i}`} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-display font-bold tracking-tight">{member.name} <span>{member.flag}</span></h3>
+                    <h3 className="text-xl font-display font-bold tracking-tight">
+                      {member.name}{member.flag && <span className="ml-2">{member.flag}</span>}
+                    </h3>
                     <p className="text-sm font-semibold text-primary mt-1">{member.role}</p>
                   </div>
                 </div>
@@ -307,9 +305,11 @@ export default function Home() {
                     <span key={j} className="text-xs font-semibold border border-border px-3 py-1 text-muted-foreground">{tag}</span>
                   ))}
                 </div>
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary hover:underline" data-testid={`team-linkedin-${i}`}>
-                  LinkedIn
-                </a>
+                {member.linkedin && (
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary hover:underline" data-testid={`team-linkedin-${i}`}>
+                    LinkedIn
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
@@ -326,7 +326,7 @@ export default function Home() {
             variants={fadeUp}
             className="mb-16"
           >
-            <p className="text-xs font-bold tracking-widest text-primary uppercase mb-4">Updates</p>
+            <SectionLabel>Updates</SectionLabel>
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter text-foreground" data-testid="news-title">FIELD DISPATCHES</h2>
           </motion.div>
 
@@ -335,7 +335,7 @@ export default function Home() {
               {
                 date: "MARCH 2026",
                 title: "First Containerized Print Unit Operational",
-                excerpt: "Our micro-factory prototype — built to fit inside a standard 20ft shipping container — successfully printed its first medical-grade socket. The unit requires only 220V power and an internet connection to operate.",
+                excerpt: "Our micro-factory prototype, built to fit inside a standard 20ft shipping container, successfully printed its first medical-grade socket. The unit requires only 220V power and an internet connection to operate.",
               },
               {
                 date: "FEBRUARY 2026",
@@ -375,12 +375,12 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <p className="text-xs font-bold tracking-widest text-primary uppercase mb-4">Get Involved</p>
+            <SectionLabel>Get Involved</SectionLabel>
             <h2 className="text-4xl md:text-6xl font-display font-bold leading-none tracking-tighter" data-testid="help-title">
               THIS PROJECT<br />IS OPEN.
             </h2>
             <p className="mt-8 text-xl text-muted-foreground leading-relaxed">
-              We're looking for people who want to help get prosthetics to the people who need them. No gatekeeping — just reach out.
+              We're looking for people who want to help get prosthetics to the people who need them. No gatekeeping, just reach out.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               {["NGO Partners", "Certified Prosthetists", "Funding & Grants", "3D Printing Expertise", "CAD Engineers", "Medical Advisors"].map((role, i) => (
@@ -475,7 +475,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-background/20 pb-16">
           <div>
             <div className="text-2xl font-display font-bold tracking-tight mb-2">Pro Bionics<span className="text-primary">.</span></div>
-            <p className="text-background/60 text-sm max-w-sm">Custom prosthetics for conflict zones. Built in the open. Montreal & Ontario, Canada.</p>
+            <p className="text-background/60 text-sm max-w-sm">Custom prosthetics for conflict zones. Built in the open. Montreal and Ontario, Canada.</p>
           </div>
           <div className="flex gap-8 text-sm font-medium text-background/60">
             <a href="#problem" className="hover:text-background transition-colors" data-testid="footer-link-problem">The Problem</a>
@@ -485,7 +485,7 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row justify-between gap-4">
-          <p className="text-background/40 text-xs">Pro Bionics © 2026 · Built in the open · Montreal & Ontario, Canada</p>
+          <p className="text-background/40 text-xs">Pro Bionics 2026. Built in the open. Montreal and Ontario, Canada.</p>
           <a href="mailto:info@probionics.org" className="text-primary text-xs font-semibold hover:underline" data-testid="footer-email">info@probionics.org</a>
         </div>
       </footer>
