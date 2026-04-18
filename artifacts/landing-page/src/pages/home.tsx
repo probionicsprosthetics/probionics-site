@@ -447,7 +447,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-background/20 pb-16">
           <div>
             <div className="text-2xl font-display font-bold tracking-tight mb-2">Pro Bionics<span className="text-primary">.</span></div>
-            <p className="text-background/60 text-sm max-w-sm">Custom prosthetics for conflict zones. Built in the open. Montreal and Ontario, Canada.</p>
+            <p className="text-background/60 text-sm max-w-sm">Custom prosthetics for conflict zones.</p>
           </div>
           <div className="flex gap-8 text-sm font-medium text-background/60">
             <a href="#problem" className="hover:text-background transition-colors" data-testid="footer-link-problem">The Problem</a>
@@ -457,7 +457,7 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row justify-between gap-4">
-          <p className="text-background/40 text-xs">Pro Bionics 2026. Built in the open. Montreal and Ontario, Canada.</p>
+          <p className="text-background/40 text-xs">Pro Bionics 2026.</p>
           <a href="mailto:info@probionics.org" className="text-primary text-xs font-semibold hover:underline" data-testid="footer-email">info@probionics.org</a>
         </div>
       </footer>
