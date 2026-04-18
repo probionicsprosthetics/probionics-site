@@ -250,17 +250,16 @@ export default function Home() {
             variants={fadeUp}
             className="mb-16"
           >
-            <SectionLabel>The Team</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter text-foreground" data-testid="team-title">
-              THREE FOUNDERS.<br />ONE MISSION.
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter text-foreground" data-testid="team-title">
+              THE TEAM.
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Ali Kotb", flag: "🇵🇸", role: "CEO", photo: aliPhoto, linkedin: "https://www.linkedin.com/in/ali-kotb/" },
-              { name: "Amjad Hassoun", flag: "🇱🇧", role: "COO", photo: amjadPhoto, linkedin: "https://www.linkedin.com/in/amjadhassoun/" },
-              { name: "Ibrahim", flag: "", role: "CTO", photo: ibrahimPhoto, linkedin: "" },
+              { name: "Ali Kotb", role: "CEO", photo: aliPhoto, linkedin: "https://www.linkedin.com/in/ali-kotb/" },
+              { name: "Amjad Hassoun", role: "COO", photo: amjadPhoto, linkedin: "https://www.linkedin.com/in/amjadhassoun/" },
+              { name: "Ibrahim Atmeh", role: "CTO", photo: ibrahimPhoto, linkedin: "https://www.linkedin.com/in/ibrahim-atmeh-213025253/" },
             ].map((member, i) => (
               <motion.div
                 key={i}
@@ -275,7 +274,7 @@ export default function Home() {
                   <img src={member.photo} alt={member.name} className="w-full h-full object-cover" data-testid={`team-photo-${i}`} />
                 </div>
                 <h3 className="text-xl font-display font-bold tracking-tight">
-                  {member.name}{member.flag && <span className="ml-2">{member.flag}</span>}
+                  {member.name}
                 </h3>
                 <p className="text-sm font-semibold text-primary mt-1 mb-4">{member.role}</p>
                 {member.linkedin && (
