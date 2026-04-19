@@ -23,7 +23,7 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
 
       - run: pnpm --filter @workspace/landing-page build
 
