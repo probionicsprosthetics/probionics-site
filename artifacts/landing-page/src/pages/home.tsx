@@ -63,7 +63,7 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary selection:text-white">
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 mix-blend-difference px-6 py-6 md:px-12 flex justify-between items-center pointer-events-none">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/60 to-transparent px-6 py-6 md:px-12 flex justify-between items-center pointer-events-none">
         <div className="text-xl font-display font-bold tracking-tight text-white pointer-events-auto cursor-pointer" data-testid="logo">
           Pro Bionics<span className="text-primary">.</span>
         </div>
