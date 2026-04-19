@@ -1,0 +1,9 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" rx="80" fill="#ffffff"/>
+  <rect x="40" y="40" width="420" height="420" rx="60" fill="#1a1a18"/>
+  <text x="250" y="218" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="300" font-size="82" fill="#c8c5bd" letter-spacing="4">Pro</text>
+  <text x="250" y="308" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="800" font-size="82" fill="#c8c5bd" letter-spacing="0">Bionics</text>
+  <circle cx="407" cy="308" r="16" fill="#D85A30"/>
+  <rect x="118" y="328" width="264" height="4" rx="2" fill="#333331"/>
+  <text x="250" y="368" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="300" font-size="26" fill="#666663" letter-spacing="10">PROSTHETICS</text>
+</svg>
